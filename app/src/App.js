@@ -1,12 +1,16 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-
 import PageWrapper from "../src/containers/pageWrapper/PageWrapper";
 import NotFound from "./views/404/404";
 import WelcomePage from "./views/welcomePage/WelcomePage";
 import SearchPage from "./views/searchPage/SearchPage";
+import { getAllGames } from "./redux/actions/games";
 
 class App extends React.Component {
+  componentDidMount() {
+    this.props.getAllGames({ page_size: "36" });
+  }
   render() {
     return (
       <React.Fragment>
@@ -17,7 +21,7 @@ class App extends React.Component {
             render={props => (
               <PageWrapper
                 {...props}
-                title="Добро пожаловать :)"
+                title="Welcome :)"
                 component={WelcomePage}
               />
             )}
@@ -27,7 +31,7 @@ class App extends React.Component {
             render={props => (
               <PageWrapper
                 {...props}
-                title="Поиск игр"
+                title="Game finder"
                 component={SearchPage}
               />
             )}
@@ -35,7 +39,7 @@ class App extends React.Component {
           <Route
             path="*"
             render={props => (
-              <PageWrapper {...props} title="Ошибка?" component={NotFound} />
+              <PageWrapper {...props} title="Error?" component={NotFound} />
             )}
           />
         </Switch>
@@ -44,4 +48,9 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = ({ games }) => ({ games });
+const mapDispatchToProps = {
+  getAllGames
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
