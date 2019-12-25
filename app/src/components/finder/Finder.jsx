@@ -14,7 +14,12 @@ class Finder extends React.Component {
 
   render() {
     return (
-      <Search placeholder="Enter game name here..." onSearch={this.onSearch} />
+      <div className={"place"}>
+        <Search
+          placeholder="Enter game name here..."
+          onSearch={this.onSearch}
+        />
+      </div>
     );
   }
 }

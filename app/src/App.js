@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import PageWrapper from "../src/containers/pageWrapper/PageWrapper";
 import NotFound from "./views/404/404";
-import WelcomePage from "./views/welcomePage/WelcomePage";
 import SearchPage from "./views/searchPage/SearchPage";
 import { getAllGames } from "./redux/actions/games";
 
@@ -18,16 +17,6 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            render={props => (
-              <PageWrapper
-                {...props}
-                title="Welcome :)"
-                component={WelcomePage}
-              />
-            )}
-          />
-          <Route
-            path="/search"
             render={props => (
               <PageWrapper
                 {...props}
